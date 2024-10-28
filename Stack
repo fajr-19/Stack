@@ -1,0 +1,49 @@
+import java.util.Stack;
+
+public class DataMahasiswa {
+    public static void main(String[] args){
+        // Membuat Stack untuk nama dan nilai mahasiswa
+        Stack<String> namaMahasiswa = new Stack<>();
+        Stack<Integer> nilaiMahasiswa = new Stack<>();
+
+        // Menambahkan data mahasiswa ke dalam Stack (tanpa Scanner)
+        namaMahasiswa.push("Andi");
+        nilaiMahasiswa.push(85);
+
+        namaMahasiswa.push("Budi");
+        nilaiMahasiswa.push(60);
+
+        namaMahasiswa.push("Citra");
+        nilaiMahasiswa.push(75);
+
+        namaMahasiswa.push("Dina");
+        nilaiMahasiswa.push(45);
+
+        namaMahasiswa.push("Eka");
+        nilaiMahasiswa.push(90);
+
+        // Memproses dan menampilkan data mahasiswa
+        System.out.println("\nDAFTAR NILAI MAHASISWA");
+        System.out.println("=========================");
+        System.out.println("No\tNama\tNilai\tStatus");
+
+        int count = 1;
+        float jumlah = 0;
+        while (!namaMahasiswa.isEmpty() && !nilaiMahasiswa.isEmpty()) {
+            // Mengambil data dari stack (LIFO)
+            String nama = namaMahasiswa.pop();
+            int nilai = nilaiMahasiswa.pop();
+            String status = nilai >= 70 ? "Lulus" : "Tidak lulus";
+            
+            // Menampilkan data
+            System.out.println(count + "\t" + nama + "\t" + nilai + "\t" + status);
+            jumlah += nilai;
+            count++;
+        }
+
+        System.out.println("=========================");
+        float rataRata = jumlah / (count - 1); // count-1 untuk jumlah mahasiswa
+        System.out.println("Jumlah: " + jumlah);
+        System.out.println("Nilai Rata-rata: " + rataRata);
+    }
+}
