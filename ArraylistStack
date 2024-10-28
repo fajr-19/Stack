@@ -1,0 +1,49 @@
+import java.util.Stack;
+
+public class ArrayListToStack {
+    public static void main(String[] args) {
+        String[] Buah = {"Apel", "Jeruk", "Mangga", "Duku", "Semangka"};
+        int[] Harga = {35000, 50000, 25000, 15000, 20000};
+        int[] Totalharga = new int[Buah.length];
+
+        int total = 0;
+
+        // Membuat stack untuk data belanjaan
+        Stack<Integer> pilihanBuah = new Stack<>();
+        Stack<Integer> jumlahBuah = new Stack<>();
+
+        // Menambahkan data belanjaan secara langsung ke dalam stack
+        // Misalnya, pelanggan memilih Apel (0) dengan jumlah 2 dan Jeruk (1) dengan jumlah 3.
+        pilihanBuah.push(0); jumlahBuah.push(2);  // Apel, 2 buah
+        pilihanBuah.push(1); jumlahBuah.push(3);  // Jeruk, 3 buah
+        pilihanBuah.push(4); jumlahBuah.push(1);  // Semangka, 1 buah
+        pilihanBuah.push(2); jumlahBuah.push(5);  // Mangga, 5 buah
+
+        // Memproses data dari stack
+        while (!pilihanBuah.isEmpty() && !jumlahBuah.isEmpty()) {
+            int BelanjaBuah = pilihanBuah.pop();
+            int quantity = jumlahBuah.pop();
+
+            Totalharga[BelanjaBuah] += quantity;
+            total += Harga[BelanjaBuah] * quantity;
+        }
+
+        // Menampilkan daftar belanja
+        System.out.println("Daftar Belanja:");
+        System.out.println("======================================================================");
+        System.out.println("No.\t\tNama Buah \tJumlah \t\tHarga \t\tSubtotal");
+        System.out.println("----------------------------------------------------------------------");
+
+        for (int i = 0; i < Buah.length; i++) {
+            if (Totalharga[i] > 0) {
+                System.out.printf("%d.\t\t%s\t\t%d\t\t%d\t\t%d\n", i + 1, Buah[i], Totalharga[i], Harga[i], Harga[i] * Totalharga[i]);
+            }
+        }
+
+        System.out.println("==================================================================");
+        System.out.println("Total:\t\t" + total);
+        int discount = (int) (total * 0.15);
+        System.out.println("Discount (15%):\t" + discount);
+        System.out.println("Total bayar:\t" + (total - discount));
+    }
+}
